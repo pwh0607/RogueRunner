@@ -1,0 +1,122 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Project\\RoqueRunner\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|d:\\project\\roquerunner\\assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|D:\\Project\\RoqueRunner\\assets\\script\\obstaclecontroller2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\obstaclecontroller2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|D:\\Project\\RoqueRunner\\assets\\script\\groundcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\groundcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|D:\\Project\\RoqueRunner\\assets\\script\\obstaclecontroller1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\obstaclecontroller1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|D:\\Project\\RoqueRunner\\assets\\script\\mapmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\mapmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|D:\\Project\\RoqueRunner\\assets\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{32A43BA9-417E-48AB-1E72-F1EB1611A901}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ObstacleController2.cs",
+              "DocumentMoniker": "D:\\Project\\RoqueRunner\\Assets\\Script\\ObstacleController2.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\ObstacleController2.cs",
+              "ToolTip": "D:\\Project\\RoqueRunner\\Assets\\Script\\ObstacleController2.cs",
+              "RelativeToolTip": "Assets\\Script\\ObstacleController2.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACgAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-07T09:30:42.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ObstacleController1.cs",
+              "DocumentMoniker": "D:\\Project\\RoqueRunner\\Assets\\Script\\ObstacleController1.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\ObstacleController1.cs",
+              "ToolTip": "D:\\Project\\RoqueRunner\\Assets\\Script\\ObstacleController1.cs",
+              "RelativeToolTip": "Assets\\Script\\ObstacleController1.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAwBUAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T13:16:47.731Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GroundController.cs",
+              "DocumentMoniker": "D:\\Project\\RoqueRunner\\Assets\\Script\\GroundController.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\GroundController.cs",
+              "ToolTip": "D:\\Project\\RoqueRunner\\Assets\\Script\\GroundController.cs",
+              "RelativeToolTip": "Assets\\Script\\GroundController.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAAwAwAAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T04:58:59.123Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MapManager.cs",
+              "DocumentMoniker": "D:\\Project\\RoqueRunner\\Assets\\Script\\MapManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\MapManager.cs",
+              "ToolTip": "D:\\Project\\RoqueRunner\\Assets\\Script\\MapManager.cs",
+              "RelativeToolTip": "Assets\\Script\\MapManager.cs",
+              "ViewState": "AQIAADYAAAAAAAAAAAAIwDgAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T04:54:06.548Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "D:\\Project\\RoqueRunner\\Assets\\Script\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\GameManager.cs",
+              "ToolTip": "D:\\Project\\RoqueRunner\\Assets\\Script\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Script\\GameManager.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAEYAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-05T04:46:15.886Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "D:\\Project\\RoqueRunner\\Assets\\Script\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\PlayerController.cs",
+              "ToolTip": "D:\\Project\\RoqueRunner\\Assets\\Script\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\Script\\PlayerController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAbAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-03T13:01:40.23Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
