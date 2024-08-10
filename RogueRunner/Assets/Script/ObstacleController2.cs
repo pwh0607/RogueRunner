@@ -19,10 +19,13 @@ public class ObstacleController2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //player를 따라 이동하기.
-        if(player!= null)
+        if (GameManager.Instance.getStart())
         {
-            MoveToPlayer();
+            //player를 따라 이동하기.
+            if (player != null)
+            {
+                MoveToPlayer();
+            }
         }
 
         if (gameObject.transform.position.z <= -450)
@@ -33,7 +36,6 @@ public class ObstacleController2 : MonoBehaviour
 
     void MoveToPlayer()
     {
-
         Quaternion fixedRot = gameObject.transform.localRotation;
 
         //dir이 특정 범위안에 (z축 기준.)

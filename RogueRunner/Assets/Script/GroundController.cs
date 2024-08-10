@@ -8,7 +8,11 @@ public class GroundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MoveMap();
+        if (GameManager.Instance.getStart())
+        {
+            MoveMap();
+        }
+
         if(this.transform.position.z <= -446)
         {
             DesMap();

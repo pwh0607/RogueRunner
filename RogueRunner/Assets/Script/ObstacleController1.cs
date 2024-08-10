@@ -15,9 +15,12 @@ public class ObstacleController1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.transform.position.z <= -450)
+        if (GameManager.Instance.getStart())
         {
-            Destroy(gameObject);
+            if (gameObject.transform.position.z <= -450)
+            {
+                Destroy(gameObject);
+            }
         }
     }
 }
