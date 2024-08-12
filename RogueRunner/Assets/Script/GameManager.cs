@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class GameState
 {
@@ -12,12 +13,12 @@ public class GameState
         0 : 게임 중지.
         1 : 게임 진행.
      */
-    public bool isStart { get; set; }
+    public bool isPaused { get; set; }
 
-    public GameState(int stage, bool isStart)
+    public GameState(int stage, bool isPaused)
     {
         this.stage = stage;
-        this.isStart = isStart;
+        this.isPaused = isPaused;
     }
 }
 
@@ -25,17 +26,20 @@ public class PlayerData
 {
     public int curHP { get; set; }
     public float curSpeed { get; set; }
+
+    public float curScore { get; set; }
     public Dictionary<string, int> skills { get; set; }
 
-    public PlayerData(int HP, float speed)
+    public PlayerData(int HP, float speed, float score)
     {
         curHP = HP;
         curSpeed = speed;
+        curScore = score;
         skills = new Dictionary<string, int>();
         
-        skills.Add("BOMB", 0);
-        skills.Add("SHILED", 0);
-        skills.Add("TIMER", 0);
+        skills.Add("BOMB", 10);
+        skills.Add("SHILED", 10);
+        skills.Add("TIMER", 10);
     }
 }
 
@@ -49,10 +53,10 @@ public class GameManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // 이 오브젝트를 씬 전환 시 파괴되지 않도록 설정
+            DontDestroyOnLoad(gameObject); 
         }else
         {
-            Destroy(gameObject); // 이미 인스턴스가 존재하면 새로운 인스턴스를 파괴
+            Destroy(gameObject);    
         }
     }
 
@@ -65,15 +69,16 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        gameState = new GameState(0, false);
-        playerData = new PlayerData(3, 20f);
+        //씬 시작시 게임이 일시정지가 되어야한다.
+        gameState = new GameState(0, true);
+        playerData = new PlayerData(3, 20f, 0f);
     }
 
     //씬전환시..
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        gameState.stage++; // 씬이 로드될 때마다 stage를 1씩 증가
-        Debug.Log($"Stage: {gameState.stage}"); // 디버그 용으로 현재 스테이지 출력
+        gameState.stage++;                          // 씬이 로드될 때마다 stage를 1씩 증가
+        Debug.Log($"Stage: {gameState.stage}");     // 디버그 용으로 현재 스테이지 출력
     }
 
     public void GameOver()
@@ -101,14 +106,14 @@ public class GameManager : MonoBehaviour
         return prefab;
     }
 
-    public bool getStart()
+    public bool getPaused()
     {
-        return gameState.isStart;
+        return gameState.isPaused;
     }
 
-    public void setStart()
+    public void setPaused()
     {
-        gameState.isStart = !gameState.isStart;
+        gameState.isPaused = !gameState.isPaused;
     }
 
     public PlayerData GetPlayerData()

@@ -34,7 +34,7 @@ public class ObstacleSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.getStart())
+        if (!GameManager.Instance.getPaused() && !SceneManager.Instance.isStopSkilled)
         {
             time1 += Time.deltaTime;
             time2 += Time.deltaTime;
@@ -53,8 +53,8 @@ public class ObstacleSpawner : MonoBehaviour
     }
     private void SpawnObstacle1()
     {
-        //xÁÂÇ¥ÀÇ ·£´ý°ª »öÃâ
-        int ranX = Random.Range(-25, 25);
+        //xÁÂÇ¥ÀÇ ·£´ý°ª »öÃâA
+        int ranX = Random.Range(-20, 20);
         GameObject obs = Instantiate(obstaclePrefab1);
         obs.transform.position = new Vector3(ost.position.x + ranX, ost.position.y, ost.position.z);
     }

@@ -38,11 +38,13 @@ public class CardController : MonoBehaviour
         Debug.Log(gameObject.name + "카드 클릭");
 
         //카드 클릭시 게임 시작
-        GameManager.Instance.setStart();
+        GameManager.Instance.setPaused();
+        Debug.Log("일시정지 유무 : " + GameManager.Instance.getPaused());
+        Debug.Log("타이머 사용 유무 : " + SceneManager.Instance.isStopSkilled);
 
         //player에 카드 효과 적용하기
         player.GetComponent<PlayerController>().ApplyCard(gameObject.tag);
-
+        player.GetComponent<PlayerController>().PlayRun();
         Destroy(gameObject.transform.parent.gameObject);
     }
 }
