@@ -38,7 +38,9 @@ public class PlayerController : MonoBehaviour
     public GameObject[] cards;
     public GameObject ScoreBoard;
     public GameObject OptionPanel;
+    public GameObject StageClearPanel;
     public Button[] skillBtn;
+
 
     //애니메이션 제어
     private Animator animator;
@@ -93,7 +95,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        //만약 진행 상태가 true인 경우만...
+        //만약 일시정지 상태가 true인 경우만...
         if (GameManager.Instance.getPaused())
         {
             Move();
@@ -101,6 +103,7 @@ public class PlayerController : MonoBehaviour
             CheckSkill();
             ScoreUp();
             SkillCasting();
+            UpdateSkillCnt();
         }
         PauseGame();
     }
@@ -240,6 +243,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void UpdateSkillCnt()
+    {
+        skillBtn[0].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = state.skills["SHILED"].ToString();
+        skillBtn[1].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = state.skills["BOMB"].ToString();
+        skillBtn[2].transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = state.skills["TIMER"].ToString();
+    }
 
     public void ApplyCard(string cardName)
     {

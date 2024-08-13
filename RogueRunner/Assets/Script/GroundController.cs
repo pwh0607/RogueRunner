@@ -8,7 +8,7 @@ public class GroundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.getPaused())
+        if (!GameManager.Instance.getPaused())
         {
             MoveMap();
         }

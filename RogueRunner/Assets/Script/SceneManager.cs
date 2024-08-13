@@ -44,4 +44,20 @@ public class SceneManager : MonoBehaviour
             instance = this;
         }
     }
+
+    void Update()
+    {
+        //게임이 실행중인 상태인 경우만 증가(isPaused == false)
+        if (!GameManager.Instance.getPaused())
+        {
+            SceneTime += Time.deltaTime;
+        }
+
+        //게임 시간이 100초가 초과한 경우...
+        if(SceneTime >= 100)
+        {
+            //스테이지 완료.
+            GameManager.Instance.StageClear();
+        }
+    }
 }

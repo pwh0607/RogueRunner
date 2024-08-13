@@ -106,6 +106,13 @@ public class GameManager : MonoBehaviour
         return prefab;
     }
 
+    public void StageClear()
+    {
+        //스테이지 클리어시 게임 화면 멈춤.
+        gameState.isPaused = false;
+        Debug.Log("스테이지 클리어.");
+    }
+
     public bool getPaused()
     {
         return gameState.isPaused;
