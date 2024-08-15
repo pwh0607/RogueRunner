@@ -34,7 +34,7 @@ public class ObstacleSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.Instance.getPaused() && !SceneManager.Instance.isStopSkilled)
+        if (GameManager.Instance.getGameCode() == "Start" && !SceneManager.Instance.isStopSkilled)
         {
             time1 += Time.deltaTime;
             time2 += Time.deltaTime;

@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
 
     //폭탄 프리팹
     public GameObject BombPrefab;
+    //실드 스킬 오브젝트
+    public GameObject ShiledEffect;
 
     //UI 관련 오브젝트 참조
     public GameObject HPCnt;
@@ -75,8 +77,18 @@ public class PlayerController : MonoBehaviour
     {
         SceneManager.Instance.isStopSkilled = true;
         yield return new WaitForSeconds(2f);
-
         SceneManager.Instance.isStopSkilled = false;
+    }
+
+    IEnumerator Skill_Shiled()
+    {
+        //collider 무시를 통해 무적기능 구현.
+        gameObject.GetComponent<Collider>().enabled = false;
+        Debug.Log("Collider 상태 " + gameObject.GetComponent<Collider>().enabled);
+        // 1초간 무적.
+        yield return new WaitForSeconds(1.5f);
+        gameObject.GetComponent<Collider>().enabled = true;
+        Debug.Log("1초 후, Collider 상태 " + gameObject.GetComponent<Collider>().enabled);
     }
 
     // Start is called before the first frame update
@@ -96,7 +108,7 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         //만약 일시정지 상태가 true인 경우만...
-        if (GameManager.Instance.getPaused())
+        if (GameManager.Instance.getGameCode() == "Start")
         {
             Move();
             CheckHP();
@@ -175,8 +187,15 @@ public class PlayerController : MonoBehaviour
             OptionPanel.SetActive(!OptionPanel.active);
 
             //매니저에게 중지 설정
-            GameManager.Instance.setPaused();
-            Debug.Log("일시정지 유무 : " + GameManager.Instance.getPaused());
+            if (OptionPanel.active)
+            {
+                GameManager.Instance.setGameCode("Paused");
+            }
+            else
+            {
+                GameManager.Instance.setGameCode("Start");
+            }
+            Debug.Log("일시정지 유무 : " + GameManager.Instance.getGameCode());
             Debug.Log("타이머 사용 유무 : " + SceneManager.Instance.isStopSkilled);
         }
     }
@@ -220,27 +239,48 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Q))
         {
             //실드
+            ShiledCasting();
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y+10, transform.position.z);
-            //폭탄
-            GameObject bombInstance = Instantiate(BombPrefab);
-            
-            if(bombInstance != null)
-            {
-                bombInstance.SetActive(true);
-                bombInstance.transform.position = spawnPos;
-            }
-            state.skills["BOMB"]--;
+            BombCasting();
         }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
             //timer
             StartCoroutine(Skill_Timer());
+            Debug.Log("타이머 ON");
         }
+    }
+
+    //skills
+    void BombCasting()
+    {
+        Vector3 spawnPos = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
+        //폭탄
+        GameObject bombInstance = Instantiate(BombPrefab);
+
+        if (bombInstance != null)
+        {
+            bombInstance.SetActive(true);
+            bombInstance.transform.position = spawnPos;
+        }
+        state.skills["BOMB"]--;
+    }
+
+    void ShiledCasting()
+    {
+        StartCoroutine(Skill_Shiled());
+
+        //실드 이펙트 연출
+        GameObject ShiledInstance = Instantiate(ShiledEffect, gameObject.transform.position, gameObject.transform.rotation);
+        ParticleSystem particleSystem = ShiledInstance.GetComponent<ParticleSystem>();
+        ShiledInstance.SetActive(true);
+        ShiledInstance.transform.SetParent(transform);
+        particleSystem.Play();
+        Destroy(ShiledInstance, 1.5f);
     }
 
     void UpdateSkillCnt()
@@ -290,7 +330,7 @@ public class PlayerController : MonoBehaviour
     //게임 시작 테스트용 코드(테스트 완료후 삭제 예정
     public void onClickStartBtn()
     {
-        GameManager.Instance.setPaused();
+        GameManager.Instance.setGameCode("Start");
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -311,5 +351,11 @@ public class PlayerController : MonoBehaviour
             Debug.Log("SLOW");
             StartCoroutine(SlowEffect());
         }
+    }
+
+    //플레이어가 스테이지 클리어, 게임 종료 후, Player 데이터를 GameManager에게 보내기.
+    public void UpdateState()
+    {
+        GameManager.Instance.UpdatePlayerData(state);
     }
 }

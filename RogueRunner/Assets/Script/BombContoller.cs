@@ -16,7 +16,7 @@ public class BombContoller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.getPaused() || !SceneManager.Instance.isStopSkilled)
+        if (GameManager.Instance.getGameCode() != "Paused" || !SceneManager.Instance.isStopSkilled)
         {
             GetComponent<Rigidbody>().isKinematic = false;
         }

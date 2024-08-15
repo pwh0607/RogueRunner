@@ -25,7 +25,6 @@ public class SceneManager : MonoBehaviour
         }
     }
 
-
     float SceneTime;
     public bool isStopSkilled { get; set; }
 
@@ -48,7 +47,7 @@ public class SceneManager : MonoBehaviour
     void Update()
     {
         //게임이 실행중인 상태인 경우만 증가(isPaused == false)
-        if (!GameManager.Instance.getPaused())
+        if (GameManager.Instance.getGameCode() == "Start")
         {
             SceneTime += Time.deltaTime;
         }
@@ -58,6 +57,11 @@ public class SceneManager : MonoBehaviour
         {
             //스테이지 완료.
             GameManager.Instance.StageClear();
+        }
+
+        if(SceneTime % 10 == 0)
+        {
+            Debug.Log("SceneTime : " + SceneTime);
         }
     }
 }

@@ -25,7 +25,7 @@ public class ObstacleController1 : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (GameManager.Instance.getPaused() || SceneManager.Instance.isStopSkilled)
+        if (GameManager.Instance.getGameCode() =="Pause" || SceneManager.Instance.isStopSkilled)
         {
             if (!rb.isKinematic)
             {

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UIElements.Experimental;
 
 public class GameState
 {
@@ -13,12 +14,20 @@ public class GameState
         0 : 게임 중지.
         1 : 게임 진행.
      */
-    public bool isPaused { get; set; }
+   // public bool isPaused { get; set; }
+    /*      GameCode
+     *      Before      게임 시작전 카드를 고르는 상태
+     *      Start       게임 진행중  
+     *      Pause       일시정지
+     *      Death       플레이어가 HP를 모두 소모..
+     *      StageClear  스테이지 클리어 상태.
+     */
+    public string GameCode { get; set; }
 
-    public GameState(int stage, bool isPaused)
+    public GameState(int stage, string GameCode)
     {
         this.stage = stage;
-        this.isPaused = isPaused;
+        this.GameCode = GameCode;
     }
 }
 
@@ -26,7 +35,6 @@ public class PlayerData
 {
     public int curHP { get; set; }
     public float curSpeed { get; set; }
-
     public float curScore { get; set; }
     public Dictionary<string, int> skills { get; set; }
 
@@ -40,6 +48,15 @@ public class PlayerData
         skills.Add("BOMB", 10);
         skills.Add("SHILED", 10);
         skills.Add("TIMER", 10);
+    }
+    
+    //스테이지 클리어시 현재 상태를 저장.
+    public void UpdatePlayerData(int HP, float speed, float score, Dictionary<string, int> skills)
+    {
+        curHP = HP;
+        curSpeed = speed;
+        curScore = score;
+        this.skills = skills;
     }
 }
 
@@ -70,7 +87,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //씬 시작시 게임이 일시정지가 되어야한다.
-        gameState = new GameState(0, true);
+        gameState = new GameState(0, "Before");
         playerData = new PlayerData(3, 20f, 0f);
     }
 
@@ -109,23 +126,18 @@ public class GameManager : MonoBehaviour
     public void StageClear()
     {
         //스테이지 클리어시 게임 화면 멈춤.
-        gameState.isPaused = false;
+        gameState.GameCode = "StageClear";
         Debug.Log("스테이지 클리어.");
-    }
-
-    public bool getPaused()
-    {
-        return gameState.isPaused;
-    }
-
-    public void setPaused()
-    {
-        gameState.isPaused = !gameState.isPaused;
     }
 
     public PlayerData GetPlayerData()
     {
         return playerData;
+    }
+
+    public void UpdatePlayerData(PlayerState p_state)
+    {
+        playerData.UpdatePlayerData(p_state.HP, p_state.speed, p_state.score, p_state.skills);
     }
 
     //card 이름에 따라 효과 분리.
@@ -149,5 +161,14 @@ public class GameManager : MonoBehaviour
                 playerData.curSpeed *= 1.2f;
                 break;
         }
+    }
+
+    public string getGameCode()
+    {
+        return gameState.GameCode;
+    }
+    public void setGameCode(string code)
+    {
+        gameState.GameCode = code;
     }
 }

@@ -24,16 +24,7 @@ public class ObstacleController2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.getPaused())
-        {
-            //player를 따라 이동하기.
-            if (player != null)
-            {
-                MoveToPlayer();
-            }
-        }
-
-        if (GameManager.Instance.getPaused() || SceneManager.Instance.isStopSkilled)
+        if (GameManager.Instance.getGameCode() == "Pause" || SceneManager.Instance.isStopSkilled)
         {
             if (!rb.isKinematic)
             {
@@ -56,6 +47,12 @@ public class ObstacleController2 : MonoBehaviour
                 rb.velocity = savedVelocity;
                 rb.angularVelocity = savedAngularVelocity;
             }
+        }
+
+        //player를 따라 이동하기.
+        if (player != null)
+        {
+            MoveToPlayer();
         }
 
         if (gameObject.transform.position.z <= -450)
