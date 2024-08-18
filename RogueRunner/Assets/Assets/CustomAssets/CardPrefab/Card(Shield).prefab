@@ -140,7 +140,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uC2A4\uD0AC \uC0AC\uC6A9\uC2DC 1\uCD08\uAC04 \uBB34\uC801"
+  m_text: "[\uC2E4\uB4DC]\uC2A4\uD0AC \n\uC0AC\uC6A9\uD69F\uC218 1\uC99D\uAC00"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4923382ccb8dd374d80c9842df170162, type: 2}
   m_sharedMaterial: {fileID: -5093076200322080849, guid: 4923382ccb8dd374d80c9842df170162, type: 2}
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 45
-  m_fontSizeBase: 45
+  m_fontSize: 40
+  m_fontSizeBase: 40
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -294,7 +294,6 @@ GameObject:
   m_Component:
   - component: {fileID: 669938073727296175}
   - component: {fileID: 7640261894860853060}
-  - component: {fileID: 4356782607131913698}
   m_Layer: 5
   m_Name: Card(Shield)
   m_TagString: SHILED
@@ -336,32 +335,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a57bfd88bc7817a428973eab3f632790, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4356782607131913698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5460233314438883289}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 4
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 7640261894860853060}
-          m_TargetAssemblyTypeName: CardController, Assembly-CSharp
-          m_MethodName: onClickCard
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
+  player: {fileID: 0}
