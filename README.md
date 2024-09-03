@@ -19,6 +19,8 @@
 >`Unity` `.NET` `MySQL`
 
 ### 🔎시스템 구조
+![Flow chart](https://github.com/user-attachments/assets/e7b54408-4e1c-4b10-a146-9fc349044852)
+
 
 ### 📲주요화면
 #### `로그인 및 회원가입`<br>
