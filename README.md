@@ -50,13 +50,12 @@
 |:--:|:--:|:--:|
 |![게임화면_Card](https://github.com/user-attachments/assets/53596e17-54e8-4f8c-9ffc-e657f8b1bf8d)|![게임 진행_shiled](https://github.com/user-attachments/assets/8d9b2607-0644-4ff7-8f75-65c2a6c80f0c)|![게임 스테이지클리어](https://github.com/user-attachments/assets/3336f8ae-b919-4d06-b2af-731889da09d7)|
 
-
 </details>
 
 ### 🔗링크
-`클라이언트`
+`클라이언트`</br>
 https://github.com/pwh0607/RogueRunner
-`서버`
+<br>`서버`</br>
 https://github.com/pwh0607/RogueRunnerServer
 
 ### 👨‍💻개발자
