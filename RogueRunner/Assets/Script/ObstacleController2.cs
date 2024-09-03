@@ -10,52 +10,34 @@ public class ObstacleController2 : MonoBehaviour
     private float speed = 100f;
 
     private Rigidbody rb;
-    private Vector3 savedVelocity; // 속도를 저장할 변수
-    private Vector3 savedAngularVelocity; // 각속도를 저장할 변수
+    private Vector3 savedVelocity;              // 속도를 저장할 변수
+    private Vector3 savedAngularVelocity;       // 각속도를 저장할 변수
 
-    // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        player = GameObject.FindWithTag("PLAYER");
         playerTrans = player.transform;
         rb = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.getGameCode() == "Pause" || SceneManager.Instance.isStopSkilled)
+        if (GameManager.Instance.getGameCode() == "Start" && !StageManager.Instance.isStopSkilled)
         {
-            if (!rb.isKinematic)
+            //player를 따라 이동하기.
+            if (player != null)
             {
-                // 현재 속도와 각속도를 저장
-                savedVelocity = rb.velocity;
-                savedAngularVelocity = rb.angularVelocity;
-
-                // Rigidbody를 일시적으로 멈춤
-                rb.isKinematic = true;
-            }
-        }
-        else
-        {
-            if (rb.isKinematic)
-            {
-                // Rigidbody 다시 활성화
-                rb.isKinematic = false;
-
-                // 저장된 속도와 각속도를 복원
-                rb.velocity = savedVelocity;
-                rb.angularVelocity = savedAngularVelocity;
+                MoveToPlayer();
             }
         }
 
-        //player를 따라 이동하기.
-        if (player != null)
-        {
-            MoveToPlayer();
-        }
 
         if (gameObject.transform.position.z <= -450)
+        {
+            Destroy(gameObject);
+        }
+
+        if (GameManager.Instance.getGameCode() == "StageClear")
         {
             Destroy(gameObject);
         }

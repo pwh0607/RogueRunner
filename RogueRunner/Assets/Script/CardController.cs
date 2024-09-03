@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CardController : MonoBehaviour
+public class CardController : MonoBehaviour, IPointerClickHandler
 {
     private float dropSpeed = 1000f;
     private RectTransform rectTransform;
@@ -33,14 +34,13 @@ public class CardController : MonoBehaviour
         }
     }
 
-    public void onClickCard()
+    public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log(gameObject.name + "카드 클릭");
-
         //카드 클릭시 게임 시작
         GameManager.Instance.setGameCode("Start");
-        Debug.Log("일시정지 유무 : " + GameManager.Instance.getGameCode());
-        Debug.Log("타이머 사용 유무 : " + SceneManager.Instance.isStopSkilled);
+       // Debug.Log("일시정지 유무 : " + GameManager.Instance.getGameCode());
+        //Debug.Log("타이머 사용 유무 : " + StageManager.Instance.isStopSkilled);
 
         //player에 카드 효과 적용하기
         player.GetComponent<PlayerController>().ApplyCard(gameObject.tag);

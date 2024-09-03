@@ -34,21 +34,25 @@ public class ObstacleSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.getGameCode() == "Start" && !SceneManager.Instance.isStopSkilled)
+        if (GameManager.Instance.getGameCode() == "Start")
         {
-            time1 += Time.deltaTime;
-            time2 += Time.deltaTime;
-            if (time1 >= timeSlice1)
+            if (!StageManager.Instance.isStopSkilled)
             {
-                time1 = 0;
-                SpawnObstacle1();
-            }
+                //게임이 시작상태이지만... 타이머 스킬을 사용하지 않은 경우...
+                time1 += Time.deltaTime;
+                time2 += Time.deltaTime;
+                if (time1 >= timeSlice1)
+                {
+                    time1 = 0;
+                    SpawnObstacle1();
+                }
 
-            if (time2 >= timeSlice2)
-            {
-                time2 = 0;
-                SpawnObstacle2();
-            }
+                if (time2 >= timeSlice2)
+                {
+                    time2 = 0;
+                    SpawnObstacle2();
+                }
+            }       
         }
     }
     private void SpawnObstacle1()

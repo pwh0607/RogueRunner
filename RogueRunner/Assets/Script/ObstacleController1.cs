@@ -25,7 +25,7 @@ public class ObstacleController1 : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (GameManager.Instance.getGameCode() =="Pause" || SceneManager.Instance.isStopSkilled)
+        if (GameManager.Instance.getGameCode() == "Pause" || StageManager.Instance.isStopSkilled)
         {
             if (!rb.isKinematic)
             {
@@ -36,8 +36,7 @@ public class ObstacleController1 : MonoBehaviour
                 // Rigidbody∏¶ ¿œΩ√¿˚¿∏∑Œ ∏ÿ√„
                 rb.isKinematic = true;
             }
-        }
-        else
+        }else
         {
             if (rb.isKinematic)
             {
@@ -48,6 +47,11 @@ public class ObstacleController1 : MonoBehaviour
                 rb.velocity = savedVelocity;
                 rb.angularVelocity = savedAngularVelocity;
             }
+        }
+
+        if(GameManager.Instance.getGameCode() == "StageClear")
+        {
+            Destroy(gameObject);
         }
     }
 

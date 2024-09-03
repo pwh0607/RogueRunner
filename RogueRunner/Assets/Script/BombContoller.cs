@@ -11,12 +11,15 @@ public class BombContoller : MonoBehaviour
     {
         Vector3 dir = new Vector3(0, 0.3f, 1);
         gameObject.GetComponent<Rigidbody>().AddForce(force * dir);
+
+        //2초뒤 제거.
+        Destroy(gameObject, 3.0f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.getGameCode() != "Paused" || !SceneManager.Instance.isStopSkilled)
+        if (GameManager.Instance.getGameCode() != "Paused" || !StageManager.Instance.isStopSkilled)
         {
             GetComponent<Rigidbody>().isKinematic = false;
         }
