@@ -10,18 +10,17 @@ public class LobbyCharacterController : MonoBehaviour
     public GameObject CharacterListContent;
     public GameObject CharacterBtnPrefab;
     public Transform CharacterDisplay;
+    public Dictionary<string, CharacterInform> CharacterInformDic;
 
-    string selectedCharacter;
-
-    GameObject[] CharacterList;             //GameManager로 부터 가져온 캐릭터 리스트
+    string selectedCharacter;               //현재 선택되어있는 캐릭터명.
 
     // Start is called before the first frame update
     void Start()
     {
-        CharacterList = GameManager.Instance.getCharacterList();
+        CharacterInformDic = GameManager.Instance.CharacterDic;
         CreateCharacterBtns();
     }
-
+    
     void CreateCharacterBtns()
     {
         //버튼 리스트 옵션
@@ -33,16 +32,17 @@ public class LobbyCharacterController : MonoBehaviour
         Vector2 startPosition = new Vector2(-70f, -80f);
 
         // 필요한 총 행의 수 계산
-        int totalRows = Mathf.CeilToInt(CharacterList.Length / (float)columns);
+        int totalRows = Mathf.CeilToInt(CharacterInformDic.Count / (float)columns);
         Vector2 btnSize = new Vector2(120f, 120f);
-
-        for (int i = 0; i < CharacterList.Length; i++)
-        {
+        int i = 0;
+        foreach(var info in CharacterInformDic) { 
             // 새로운 버튼 생성
             Button btn = Instantiate(CharacterBtnPrefab, CharacterListContent.transform.GetComponent<RectTransform>()).GetComponent<Button>();
+            Image btnImage = btn.transform.GetChild(0).GetComponent<Image>();            //버튼의 자시객체 참조 세팅
 
-            //버튼 text 수정
-            btn.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = CharacterList[i].name;
+            //버튼 이름 수정(추후 삭제예정)
+            //추후 삭제 후, 캐릭어 head 아이콘으로 세팅.
+            btnImage.sprite = info.Value.HeadIcon;
 
             int row = i / columns;       // 몇 번째 행인지 계산
             int column = i % columns;    // 몇 번째 열인지 계산
@@ -58,7 +58,9 @@ public class LobbyCharacterController : MonoBehaviour
 
             //람다식 오류 발생.
             int idx = i;
-            btn.onClick.AddListener(() => OnClickCharBtn(CharacterList[idx]));
+            btn.onClick.AddListener(() => OnClickCharBtn(info.Value.CharacterObj));
+            
+            i++;
         }
     }
 
