@@ -39,20 +39,35 @@ public class RankListController : MonoBehaviour
     IEnumerator GetRankList()
     {
         UnityWebRequest request = new UnityWebRequest(apiUrl, "GET");
+        request.downloadHandler = new DownloadHandlerBuffer();          //GET은 가져오기용 로직이므로 다운로드만 사용!
 
         // Send the request and wait for a response
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            // Log the response to debug any issues
+            Debug.Log("랭크 리스트 가져오기 성공");
             Debug.Log(request.downloadHandler.text);
 
-            // Use Newtonsoft.Json to deserialize
+            // Deserialize JSON response
             RankListResponse rankListResponse = JsonConvert.DeserializeObject<RankListResponse>(request.downloadHandler.text);
 
-            // Store the rank list and display it
+            if (rankListResponse == null)
+            {
+                Debug.LogError("Deserialized response is null.");
+                yield break;
+            }
+
+            // Check if rank list is null or empty
+            if (rankListResponse.Ranks == null || rankListResponse.Ranks.Count == 0)
+            {
+                Debug.LogError("Rank list is empty or null.");
+                yield break;
+            }
+
+            // If valid, assign the list
             rankList = rankListResponse.Ranks;
+
             MakeRankerInform(rankList);
         }
         else

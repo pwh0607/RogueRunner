@@ -50,10 +50,10 @@ public class StageManager : MonoBehaviour
             SceneTime += Time.deltaTime;
         }
 
-        //게임 시간이 100초가 초과한 경우...
-        if (SceneTime >= 51)
+        //정확하게 100초.
+        if (Mathf.Approximately(SceneTime, 100f))
         {
-            //스테이지 완료.
+            // 스테이지 완료.
             GameManager.Instance.StageClear();
         }
     }

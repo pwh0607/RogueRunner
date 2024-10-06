@@ -42,11 +42,13 @@ public class OptionController : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
     }
+
     public void OnClickHelpBtn()
     {
         //도움말 띄우기
         Debug.Log("도움말 버튼 클릭");
     }
+
     public void OnClickExitBtn()
     {
         //로비로 이동하기.
