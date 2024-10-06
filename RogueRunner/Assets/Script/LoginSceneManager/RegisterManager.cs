@@ -45,9 +45,9 @@ public class RegisterManager : MonoBehaviour
         };
 
         string jsonData = JsonConvert.SerializeObject(userData);
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
 
         UnityWebRequest request = new UnityWebRequest(apiUrl, "POST");
-        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");

@@ -59,8 +59,17 @@ public class LoginManager : MonoBehaviour
             Password = pw.Trim(),
         };
 
+        //api 구조 수동 세팅
+        /*
+            1. class data를 json 직렬화수행, JsonConvert.SerializeObject(jsonData);
+            2. request 객체 세팅 -> UnityWebRequest.***(...);
+            3. byte 세팅 UTP8
+            4. upload, download 핸들러 세팅
+            ...
+         */
         string jsonData = JsonConvert.SerializeObject(userData);    
         UnityWebRequest request = new UnityWebRequest(apiUrl, "POST");
+
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonData);
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
@@ -113,8 +122,8 @@ public class LoginManager : MonoBehaviour
     void OnClickLoginBtn()
     {
         //서버에 두 데이터 보내서 받은 응답에 따라...
-        string id = IDInput.GetComponent<TextMeshProUGUI>().text;           //"pid123";
-        string pw = PWInput.GetComponent<TextMeshProUGUI>().text;           //"pw12345";
+        string id = "pid123";       //IDInput.GetComponent<TextMeshProUGUI>().text;           
+        string pw = "pw12345";      //PWInput.GetComponent<TextMeshProUGUI>().text;           
         StartCoroutine(LoginUser(id, pw));
     }
 }
