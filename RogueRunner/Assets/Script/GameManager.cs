@@ -13,13 +13,25 @@ using UnityEngine.UIElements.Experimental;
     => GameManager에서는 사용자가 게임 중단이나 종료 후, 로비로 이동할때 state들이 갱신된다.
  */
 
-    /*      GameCode
-     *      Before      게임 시작전 카드를 고르는 상태
-     *      Start       게임 진행중  
-     *      Pause       일시정지
-     *      Death       플레이어가 HP를 모두 소모..
-     *      StageClear  스테이지 클리어 상태.
-     */
+/*      GameCode
+ *      Before      게임 시작전 카드를 고르는 상태
+ *      Start       게임 진행중  
+ *      Pause       일시정지
+ *      Death       플레이어가 HP를 모두 소모..
+ *      StageClear  스테이지 클리어 상태.
+ */
+
+public class CharacterInform
+{
+    public GameObject CharacterObj;
+    public Sprite HeadIcon;
+
+    public CharacterInform(GameObject CharacterObj, Sprite HeadIcon)
+    {
+        this.CharacterObj = CharacterObj;
+        this.HeadIcon = HeadIcon;
+    }
+}
 
 public class GameState
 {
@@ -61,12 +73,11 @@ public class PlayerData
     }
 
     //DB로 부터 데이터를 받아와서 매핑
-    public void MapPlayerData(int HP, float Score, float Speed, string CharName, Dictionary<string, int> skills)
+    public void MapPlayerData(int HP, float Score, float Speed, Dictionary<string, int> skills)
     {
         this.curHP = HP;
         this.curScore = Score;
         this.curSpeed = Speed;
-        this.curCharacter = CharName;
         this.skills = skills;
     }
     
@@ -84,6 +95,7 @@ public class GameManager : MonoBehaviour
 {
     //싱글톤으로 세팅
     public static GameManager Instance { get; private set; }
+
     void Awake()
     {
         // 싱글톤 인스턴스 설정
@@ -98,25 +110,15 @@ public class GameManager : MonoBehaviour
 
         apiManager = GetComponent<APIManager>();
 
-        //캐릭터 Dictionary 생성.
-        CharacterDic = new Dictionary<string, GameObject>();
-
-        for (int i = 0; i < CharacterList.Length; i++)
-        {
-            if (!CharacterDic.ContainsKey(CharacterList[i].name))
-            {
-                CharacterDic.Add(CharacterList[i].name, CharacterList[i]);
-            }
-        }
+        setCharacterDic();
 
         //씬 이름 추가.
         SceneList = new string[3];
         SceneList[0] = "Forest";
         SceneList[1] = "Grave";
-        SceneList[2] = "Desert";          //차후 추가할 새로운 맵.
+        SceneList[2] = "Desert";          
 
         //DB에서 이어하기 데이터 가져오기.
-        //없으면 initState() 실행.
         apiManager.GetPlayerData();
     }
 
@@ -129,8 +131,9 @@ public class GameManager : MonoBehaviour
 
     //캐릭터 종류 리스트
     public GameObject[] CharacterList;
+    public Sprite[] CharIconList;
     public GameObject PlayerPrefab;
-    public Dictionary<string, GameObject> CharacterDic;
+    public Dictionary<string, CharacterInform> CharacterDic;
 
     private string[] SceneList;
 
@@ -154,13 +157,7 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
-
-    void printTotalState()
-    {
-        Debug.Log($"PlayerState : {playerData.p_id}, {playerData.curHP},{playerData.curSpeed},{playerData.curScore}");
-        Debug.Log($"GameState : {gameState.nowScene}, {gameState.stage}");
-    }
-
+    
     //씬전환시..
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -174,6 +171,24 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log("현재 씬은 Lobby입니다.");
+        }
+    }
+
+    //데이터 출력.
+    void printTotalState()
+    {
+        Debug.Log($"PlayerState : {playerData.p_id}, {playerData.curHP},{playerData.curSpeed},{playerData.curScore}");
+        Debug.Log($"GameState : {gameState.nowScene}, {gameState.stage}");
+    }
+
+    public void setCharacterDic()
+    {
+        //캐릭터 Dictionary 생성. <캐릭터 이름, 캐릭터 오브젝트>
+        CharacterDic = new Dictionary<string, CharacterInform>();
+
+        for (int i = 0; i < CharacterList.Length && i < CharIconList.Length; i++)
+        {
+            CharacterDic[CharacterList[i].name] = new CharacterInform(CharacterList[i], CharIconList[i]);
         }
     }
 
@@ -313,7 +328,7 @@ public class GameManager : MonoBehaviour
         //스폰 위치와 선택된 캐릭터의 인스턴스 가져오기
         GameObject SpawnPos = StageManager.Instance.getSpawnPos();
         //(clone) 제거하기.
-        GameObject CharacterPrefab = CharacterDic[playerData.curCharacter];
+        GameObject CharacterPrefab = CharacterDic[playerData.curCharacter].CharacterObj;
         if (CharacterPrefab != null)
         {
             GameObject player = Instantiate(PlayerPrefab, SpawnPos.transform.position, SpawnPos.transform.rotation);
