@@ -50,6 +50,8 @@ public class PlayerController : MonoBehaviour
     public GameObject OptionPanel;
     public GameObject StageClearPanel;
     public GameObject StageClear_Score;
+    public GameObject GameOverPanel;
+    public GameObject GameOver_Score;
 
     public GameObject player;
 
@@ -114,6 +116,7 @@ public class PlayerController : MonoBehaviour
         cards = GameManager.Instance.getCardPrefab();
         OptionPanel.SetActive(false);
         ShowCard();
+
         //씬 시작시 플레이어 data를 GameManager에서 가져온다.
         initState();
     }
@@ -155,12 +158,20 @@ public class PlayerController : MonoBehaviour
 
     void ShowClearPan()
     {
-        //Debug.Log("StageClear상태!");
         StageClearPanel.SetActive(true);
 
         //소수점 올림하여 state.score올리기.
         int ceilScore = (int)Math.Ceiling(state.score);
         StageClear_Score.GetComponent<TextMeshProUGUI>().text = ceilScore.ToString();
+        GameManager.Instance.UpdatePlayerData(state);
+    }
+
+    void ShowOverPan()
+    {
+        GameOverPanel.SetActive(true);
+
+        int ceilScore = (int)Math.Ceiling(state.score);
+        GameOver_Score.GetComponent<TextMeshProUGUI>().text = ceilScore.ToString();
         GameManager.Instance.UpdatePlayerData(state);
     }
 
@@ -395,6 +406,7 @@ public class PlayerController : MonoBehaviour
         {
             MinusHP();
         }
+
         if (collision.gameObject.tag == "SLOW")
         {
             Debug.Log("SLOW");
