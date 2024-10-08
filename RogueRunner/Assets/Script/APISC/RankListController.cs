@@ -28,7 +28,7 @@ public class RankListController : MonoBehaviour
     List<ScoreRankResponse> rankList;
 
     public GameObject RankerPartPrefab;
-
+        
     public GameObject ScrollContent;
 
     void Start()
@@ -58,14 +58,12 @@ public class RankListController : MonoBehaviour
                 yield break;
             }
 
-            // Check if rank list is null or empty
             if (rankListResponse.Ranks == null || rankListResponse.Ranks.Count == 0)
             {
                 Debug.LogError("Rank list is empty or null.");
                 yield break;
             }
 
-            // If valid, assign the list
             rankList = rankListResponse.Ranks;
 
             MakeRankerInform(rankList);
@@ -121,7 +119,6 @@ public class RankListController : MonoBehaviour
 
             // 각 RankerPart의 위치 설정
             rankerPartRect.anchoredPosition = startPosition - new Vector2(0f, idx * padding);
-
         }
     }
 

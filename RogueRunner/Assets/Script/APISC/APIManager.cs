@@ -8,6 +8,7 @@ public class APIManager : MonoBehaviour
 {
     private string apiUrl = "http://localhost:5001/PlayerData"; // .NET 서버 URL
 
+    //.net 서버에 최종 점수 보내기
     private IEnumerator SendPlayerDataToAPI(PlayerDataRequest pdr)
     {
         // 메시지를 JSON 형식으로 포맷 (JsonUtility 대신 Newtonsoft.Json 사용)

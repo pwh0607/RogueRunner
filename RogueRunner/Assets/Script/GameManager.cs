@@ -196,6 +196,8 @@ public class GameManager : MonoBehaviour
     {
         gameState.GameCode = "Death";
         Debug.Log("Game Over...");
+        apiManager.
+        //게임 오버시 점수창 띄우기.
     }
     
     public GameObject[] getCardPrefab()
@@ -270,6 +272,7 @@ public class GameManager : MonoBehaviour
     {
         return gameState.GameCode;
     }
+
     public void setGameCode(string code)
     {
         gameState.GameCode = code;
@@ -285,20 +288,30 @@ public class GameManager : MonoBehaviour
             ran = Random.Range(0, SceneList.Length);
         }
         else
-        {
-            //서로 다른 값인 경우...
+        {   //이어하기 데이터가 있는 경우...
             do
             {
+                //서로 다른 값인 경우...
                 ran = Random.Range(0, SceneList.Length);
             } while (SceneList[ran] == gameState.nowScene);
         }
 
+        string newScene = SceneList[ran];
+
         Debug.Log(SceneList[ran] + "스테이지로 넘어갑니다...");
         gameState.GameCode = "Before";
         GameManager.Instance.gameState.nowScene = SceneList[ran];
-        SceneManager.LoadScene(SceneList[ran]);
+        SceneManager.LoadScene(newScene);
 
         //stage 넘어가면 state update
+    }
+
+    public void GotoLobby()
+    {
+        //로비로 이동하기전 데이터를 랭크 리스트에 넣기.
+        /*추가 사항*/
+        Debug.Log("로비로 이동합니다...");
+        SceneManager.LoadScene("Lobby");
     }
 
     public void GoContinueStage()
