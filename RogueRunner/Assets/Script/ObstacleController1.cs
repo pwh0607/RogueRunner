@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ObstacleController1 : MonoBehaviour
 {
-    float force = 8000f;
+    float force = 6000f;
+    float dynamicVal = 1f;
+    int stage;
     private Rigidbody rb;
     private Vector3 savedVelocity; // 속도를 저장할 변수
     private Vector3 savedAngularVelocity; // 각속도를 저장할 변수
@@ -12,9 +14,11 @@ public class ObstacleController1 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        stage = GameManager.Instance.gameState.stage;
         rb = GetComponent<Rigidbody>();
         Vector3 forceDir = new Vector3(0, 0, -1);
-        rb.AddForce(force * forceDir);
+        dynamicVal = 100 * GameManager.Instance.gameState.stage * 0.5f;
+        rb.AddForce((force + dynamicVal) * forceDir);
     }
 
     // Update is called once per frame
