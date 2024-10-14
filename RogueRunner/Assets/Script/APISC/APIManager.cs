@@ -3,56 +3,55 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
+using System;
 
 public class APIManager : MonoBehaviour
 {
-    private string apiUrl = "http://localhost:5001/PlayerData"; // .NET 서버 URL
+    private string defaultAPI = "http://localhost:5001";
 
-    //.net 서버에 최종 점수 보내기
-    private IEnumerator SendPlayerDataToAPI(PlayerDataRequest pdr)
+    private IEnumerator POSTFinalScoreData(FinalScoreRequest fsr)
     {
-        // 메시지를 JSON 형식으로 포맷 (JsonUtility 대신 Newtonsoft.Json 사용)
-        string jsonMessage = JsonConvert.SerializeObject(pdr);
+        string url = defaultAPI + "/ScoreRank";
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
 
-        // UnityWebRequest를 사용하여 POST 요청 보내기
-        UnityWebRequest request = new UnityWebRequest(apiUrl, "POST");
+        string jsonMessage = JsonConvert.SerializeObject(fsr);
         byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonMessage);
+
         request.uploadHandler = new UploadHandlerRaw(bodyRaw);
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
-        // 요청 보내기 및 응답 대기
         yield return request.SendWebRequest();
+    }
+    
+    private IEnumerator POSTPlayerData(PlayerDataRequest pdr)
+    {
+        string url = defaultAPI + "/PlayerData";
 
-        if (request.result == UnityWebRequest.Result.Success)
-        {
-            Debug.Log("Response: " + request.downloadHandler.text);
-        }
-        else
-        {
-            Debug.LogError("Error: " + request.error);
-        }
+        string jsonMessage = JsonConvert.SerializeObject(pdr);
+        UnityWebRequest request = new UnityWebRequest(url, "POST");
+        byte[] bodyRaw = System.Text.Encoding.UTF8.GetBytes(jsonMessage);
+
+        request.uploadHandler = new UploadHandlerRaw(bodyRaw);
+        request.downloadHandler = new DownloadHandlerBuffer();
+        request.SetRequestHeader("Content-Type", "application/json");
+
+        yield return request.SendWebRequest();
     }
 
-    private IEnumerator GetPlayerDataFromAPI(string p_id)
+    private IEnumerator GETPlayerData(string p_id)
     {
-        //pid를 기반으로 데이터 가져오기.
-        string api = apiUrl + $"/{p_id}";
-        UnityWebRequest request = new UnityWebRequest(api, "GET");
+        string url = defaultAPI + "/PlayerData" + $"/{p_id}";
+
+        UnityWebRequest request = new UnityWebRequest(url, "GET");
+
         yield return request.SendWebRequest();
+        
         if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
         {
-            //데이터를 가져오는데 실패 했을 때...
             if (request.responseCode == 404)
             {
-                Debug.Log($"해당 P_id에 대한 데이터가 없어 새로운 데이터를 생성합니다...");
-
-                //이후 새로운 GameManager에서 새로운 데이터들 초기화하기.
                 GameManager.Instance.initState();
-            }
-            else
-            {
-                Debug.LogError($"Error: {request.error}");
             }
         }
         else
@@ -67,17 +66,36 @@ public class APIManager : MonoBehaviour
         }
     }
 
-    public void SendPlayerData(PlayerData p_data, GameState g_state)
+    private IEnumerator DeletePlayerData(string p_id)
     {
-        //플레이어 데이터와 Game의 진행 상태를 Request에 저장.
-        PlayerDataRequest request = new PlayerDataRequest(p_data, g_state);
-        StartCoroutine(SendPlayerDataToAPI(request));
+        string url = defaultAPI + "/PlayerData" + $"/{p_id}";
+        UnityWebRequest request = new UnityWebRequest(url, "DELETE");
+
+        request.downloadHandler = new DownloadHandlerBuffer();
+
+        yield return request.SendWebRequest();
     }
 
-    public void GetPlayerData()
+    public void SendFinalScoreData(PlayerData p_data, GameState g_state)
+    {
+        FinalScoreRequest fsr = new FinalScoreRequest(p_data.curScore);
+
+        StartCoroutine(POSTFinalScoreData(fsr));
+        StartCoroutine(DeletePlayerData(p_data.p_id));
+    }
+
+    public void SendPlayerData(PlayerData p_data, GameState g_state)
+    {
+        PlayerDataRequest request = new PlayerDataRequest(p_data, g_state);
+
+        StartCoroutine(POSTPlayerData(request));
+    }
+
+    public void GetTemp()
     {
         string playerId = UserSession.Instance.P_Id;
-        StartCoroutine(GetPlayerDataFromAPI(playerId));
+
+        StartCoroutine(GETPlayerData(playerId));
     }
 
     [System.Serializable]
@@ -102,9 +120,10 @@ public class APIManager : MonoBehaviour
             Score = p_data.curScore;
             Speed = p_data.curSpeed;
             PlayerCharacter = p_data.curCharacter;
-            Skills = p_data.skills ?? new Dictionary<string, int>(); // null일 경우 초기화
+            Skills = p_data.skills ?? new Dictionary<string, int>();
         }
     }
+
     [System.Serializable]
     public class PlayerDataResponse
     {
@@ -115,5 +134,20 @@ public class APIManager : MonoBehaviour
         public float Score { get; set; }
         public float Speed { get; set; }
         public string Skills { get; set; }
+    }
+
+    [System.Serializable]
+    public class FinalScoreRequest
+    {
+        public string P_id { get; set; }
+        public string Nickname { get; set; }
+        public float Score { get; set; }
+
+        public FinalScoreRequest(float score)
+        {
+            P_id = UserSession.Instance.P_Id;
+            Nickname = UserSession.Instance.Nickname;
+            Score = score;
+        }  
     }
 }

@@ -22,6 +22,7 @@ public class LoginResponse
     public string User_Id { get; set; }
     public string NickName { get; set; }
 }
+
 public class MessageResponse
 {
     public string message { get; set; }
@@ -29,15 +30,12 @@ public class MessageResponse
 
 public class LoginManager : MonoBehaviour
 {
-    //api용
-    private string apiUrl = "http://localhost:5001/Login/login";
+    private string apiUrl = "http://localhost:5001/Login";
 
     public Button loginBtn;
 
-    //회원가입창
     public GameObject signUpWindow;
 
-    //입력창
     public GameObject IDInput;
     public GameObject PWInput;
 
@@ -59,14 +57,6 @@ public class LoginManager : MonoBehaviour
             Password = pw.Trim(),
         };
 
-        //api 구조 수동 세팅
-        /*
-            1. class data를 json 직렬화수행, JsonConvert.SerializeObject(jsonData);
-            2. request 객체 세팅 -> UnityWebRequest.***(...);
-            3. byte 세팅 UTP8
-            4. upload, download 핸들러 세팅
-            ...
-         */
         string jsonData = JsonConvert.SerializeObject(userData);    
         UnityWebRequest request = new UnityWebRequest(apiUrl, "POST");
 
@@ -75,37 +65,27 @@ public class LoginManager : MonoBehaviour
         request.downloadHandler = new DownloadHandlerBuffer();
         request.SetRequestHeader("Content-Type", "application/json");
 
-        Debug.Log($"Sending request to {apiUrl} with data: {jsonData}");
-
         yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.Success)
         {
-            //회원 가입 창 닫기.
             this.gameObject.SetActive(false);
 
-            //User Session
             string responseText = request.downloadHandler.text;
             LoginResponse responseObject = JsonConvert.DeserializeObject<LoginResponse>(responseText);
             string pId = responseObject.P_Id;
-            Debug.Log($"P_Id: {pId}");
 
             UserSession.Instance.setData(pId, responseObject.User_Id, responseObject.NickName);
 
-            //성공 후 씬 전환
             SceneManager.LoadScene("Lobby");
         }
         else
         {
-            Debug.LogWarning("Raw response: " + request.downloadHandler.text);
-
-            // 응답 메시지 추출.
             var responseText = request.downloadHandler.text;
             var responseJson = JsonConvert.DeserializeObject<MessageResponse>(responseText);
 
             if (responseJson != null)
             {
-                Debug.LogWarning(responseJson);
                 WarnPan.SetActive(true);
                 WarnPan.GetComponent<WarnPanController>().setWarnText(responseJson.message);
             }
@@ -121,7 +101,6 @@ public class LoginManager : MonoBehaviour
     }
     void OnClickLoginBtn()
     {
-        //서버에 두 데이터 보내서 받은 응답에 따라...
         string id = "pid123";       //IDInput.GetComponent<TextMeshProUGUI>().text;           
         string pw = "pw12345";      //PWInput.GetComponent<TextMeshProUGUI>().text;           
         StartCoroutine(LoginUser(id, pw));

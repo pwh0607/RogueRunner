@@ -48,8 +48,10 @@ public class PlayerController : MonoBehaviour
     private GameObject[] cards;             //card 리스트는 GameManager에서 받아오기.
     public GameObject ScoreBoard;
     public GameObject OptionPanel;
+    
     public GameObject StageClearPanel;
     public GameObject StageClear_Score;
+
     public GameObject GameOverPanel;
     public GameObject GameOver_Score;
 
@@ -59,6 +61,8 @@ public class PlayerController : MonoBehaviour
 
     //애니메이션 제어
     private Animator animator;
+    private bool isClear;
+
 
     //코루틴용 함수
     IEnumerator SlowEffect()
@@ -115,6 +119,7 @@ public class PlayerController : MonoBehaviour
         //Scene 시작시 GameManager에서 Card 프리팹 가져오기.
         cards = GameManager.Instance.getCardPrefab();
         OptionPanel.SetActive(false);
+        isClear = false;
         ShowCard();
 
         //씬 시작시 플레이어 data를 GameManager에서 가져온다.
@@ -123,7 +128,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        bool isClear = false;
         //만약 일시정지 상태가 true인 경우만...
         if (GameManager.Instance.getGameCode() == "Start")
         {
@@ -136,22 +140,32 @@ public class PlayerController : MonoBehaviour
         }
         PauseGame();
 
-        if (!isClear)
+        if (!isClear && GameManager.Instance.getGameCode() == "StageClear")
         {
-            if (GameManager.Instance.getGameCode() == "StageClear")
-            {
-                ShowClearPan();
-                animator.SetBool("isClear", true);
-                isClear = true;
-            }
+            ShowClearPan();
+            animator.SetBool("isClear", true);
+            isClear=true;           //중복호출 방지
         }
+        
+
         //스테이지 클리어 상태이고, 스테이지 클리어 패널이 활성화 된 상태라면...?
-        if(GameManager.Instance.getGameCode() == "StageClear" && StageClearPanel.active)
+        if(StageClearPanel.active)
         {
             //마우스 우클릭이나, 스페이스 바를 누른 상태라면... 다음 씬으로 이동.
             if(Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)){
                 GameManager.Instance.GoNextStage();
                 GameManager.Instance.UpdatePlayerData(state);
+            }
+        }
+
+        //게임 오버 상태 체크하고 패널이 활성화 된상태라면...
+        if (GameOverPanel.active)
+        {
+            if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space))
+            {
+                //score 보드에 데이터를 갱신.
+                GameManager.Instance.SendPlayerScore();
+                GameManager.Instance.GotoLobby();
             }
         }
     }
@@ -170,6 +184,7 @@ public class PlayerController : MonoBehaviour
     {
         GameOverPanel.SetActive(true);
 
+        //게임 오버 시, 임시 데이터는 삭제하고 scoreBoard에 데이터를 추가 혹은 갱신하는 코드 작성.
         int ceilScore = (int)Math.Ceiling(state.score);
         GameOver_Score.GetComponent<TextMeshProUGUI>().text = ceilScore.ToString();
         GameManager.Instance.UpdatePlayerData(state);
@@ -216,9 +231,10 @@ public class PlayerController : MonoBehaviour
         if (state.HP <= 0)
         {
             //게임 종료.
-            Debug.Log("HP 모두 소진");
+            Debug.Log("HP 모두 소진 GameOver");
             animator.SetBool("isDeath", true);
             GameManager.Instance.GameOver();
+            ShowOverPan();
         }
     }
 
@@ -419,7 +435,7 @@ public class PlayerController : MonoBehaviour
     {
         GameManager.Instance.UpdatePlayerData(state);
     }
-
+    
     public PlayerState getCurPlayerState()
     {
         return state;

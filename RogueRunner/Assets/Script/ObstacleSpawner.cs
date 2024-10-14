@@ -81,15 +81,17 @@ public class ObstacleSpawner : MonoBehaviour
     {
         //xÁÂÇ¥ÀÇ ·£´ý°ª »öÃâA
         int ranX = Random.Range(-20, 20);
+        int ranZ = Random.Range(-10, 10);
         GameObject obs = Instantiate(obstaclePrefab1);
-        obs.transform.position = new Vector3(ost1.position.x + ranX, ost1.position.y, ost1.position.z);
+        obs.transform.position = new Vector3(ost1.position.x + ranX, ost1.position.y, ost1.position.z + ranZ);
     }
 
     private void SpawnObstacle2()
     {
         //xÁÂÇ¥ÀÇ ·£´ý°ª »öÃâ
         int ranX = Random.Range(-25, 25);
+        int ranZ = Random.Range(-10, 10);
         GameObject obs = Instantiate(obstaclePrefab2);
-        obs.transform.position = new Vector3(ost2.position.x + ranX, ost2.position.y, ost2.position.z);
+        obs.transform.position = new Vector3(ost2.position.x + ranX, ost2.position.y, ost2.position.z + ranZ);
     }
 }
