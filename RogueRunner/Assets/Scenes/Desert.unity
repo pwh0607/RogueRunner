@@ -23,10 +23,10 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 1
+  m_AmbientIntensity: 0.8
   m_AmbientMode: 0
-  m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SubtractiveShadowColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 0d5771081eb9abb43b1792b52260d914, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -122,6 +122,68 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &147429572
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 344072711}
+    m_Modifications:
+    - target: {fileID: 1916675045010287866, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_Name
+      value: Road(Desert) (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 669
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+--- !u!4 &147429573 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6613850426192183636, guid: 4eafd6d8b8ceaae4ca7c05a7d5155d9f, type: 3}
+  m_PrefabInstance: {fileID: 147429572}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &169545237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -267,6 +329,7 @@ Transform:
   - {fileID: 1499194034}
   - {fileID: 169545238}
   - {fileID: 919420308}
+  - {fileID: 147429573}
   - {fileID: 703787711}
   m_Father: {fileID: 1178563202}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -785,7 +848,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
+  m_Color: {r: 1, g: 0.72085524, b: 0.3443396, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -795,7 +858,7 @@ Light:
     m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
-    m_Strength: 1
+    m_Strength: 0.1
     m_Bias: 0.05
     m_NormalBias: 0.4
     m_NearPlane: 0.2
