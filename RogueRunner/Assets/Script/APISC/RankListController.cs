@@ -9,7 +9,6 @@ using TMPro;
 [System.Serializable]
 public class ScoreRankResponse
 {
-    //응답만 받기 때문에 set은 private
     public string P_Id { get; set; }
     public string Nickname { get; set; }   
     public int Score {  get; set; }
@@ -78,7 +77,7 @@ public class RankListController : MonoBehaviour
         parentRectTransform.anchoredPosition = new Vector2(50f, 90f); 
 
         int idx = 0;
-        int padding = 50;
+        int padding = 70;
 
         Vector2 startPosition = new Vector2(0f, -1 * padding);
 

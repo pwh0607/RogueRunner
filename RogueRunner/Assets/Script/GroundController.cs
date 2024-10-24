@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Rendering;
 using UnityEngine;
 
 public class GroundController : MonoBehaviour
 {
     private float speed = 100.0f;
-    // Update is called once per frame
+
     void Update()
     {
         if (GameManager.Instance.getGameCode() == "Start")
@@ -13,7 +14,7 @@ public class GroundController : MonoBehaviour
             MoveMap();
         }
 
-        if(this.transform.position.z <= -446)
+        if(transform.position.z <= -446)
         {
             DesMap();
         }
@@ -22,11 +23,10 @@ public class GroundController : MonoBehaviour
     {
         transform.position += Vector3.back * speed * Time.deltaTime;
     }
+
     void DesMap()
     {
-        //지금 오브젝트 삭제
-        //MapManager에 삭제되었음을 알린다.
+        gameObject.SetActive(false);
         MapManager.Instance.SpawnRoad();
-        Destroy(gameObject);
     }
 }

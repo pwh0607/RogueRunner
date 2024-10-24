@@ -23,6 +23,7 @@ public class StageManager : MonoBehaviour
         }
     }
 
+    int stage;
     float SceneTime;
     public bool isStopSkilled { get; set; }
 
@@ -30,6 +31,8 @@ public class StageManager : MonoBehaviour
     {
         SceneTime = 0;
         isStopSkilled = false;
+        stage = GameManager.Instance.gameState.stage;
+
         if (instance != null && instance != this)
         {
             Destroy(this.gameObject);
@@ -39,20 +42,7 @@ public class StageManager : MonoBehaviour
             instance = this;
         }
     }
-
-    void Update()
-    {
-        if (GameManager.Instance.getGameCode() == "Start")
-        {
-            SceneTime += Time.deltaTime;
-        }
-
-        if (Mathf.Approximately(SceneTime, 100f))
-        {
-            GameManager.Instance.StageClear();
-        }
-    }
-
+    
     public GameObject getSpawnPos()
     {
         GameObject SpawnPos = transform.GetChild(0).gameObject;

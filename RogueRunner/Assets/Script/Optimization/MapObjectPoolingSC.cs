@@ -1,35 +1,60 @@
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class MapObjectPoolingSC : MonoBehaviour
 {
     public GameObject mapPrefab;            //메쉬 결합이 된 오브젝트
-    public int MaxSize = 7;
+    public GameObject mapParent;
     public Transform spawnPos;
+    public int initSize = 4;
 
     private List<GameObject> pool;
+    private int MaxSize = 6;
 
     private void Start()
     {
-        pool = new List<GameObject> ();
-        //시작시 7개의 map을 생성하기
-        //그러면 map의 Start 함수를 통해 Combined된 메시가 pool에 저장된다.
-        for(int i = 0; i < MaxSize; i++)
+        InitPooling();
+    }
+
+    public void InitPooling()
+    {
+
+        pool = new List<GameObject>();
+        for (int i = 0; i < MaxSize; i++)
         {
-            //생성시 자동으로 메쉬가 생성되고 기존의 오브젝트는 삭제완료.
             GameObject instance = Instantiate(mapPrefab);
+            instance.transform.SetParent(mapParent.transform);
+            instance.SetActive(false);
+            pool.Add(instance);
+        }
+
+        for (int i = 0; i < 5; i++)
+        {
+            Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z - (i * 223));
+            SpawnObject(newPos);
         }
     }
 
-    public void AddMeshObj(GameObject MeshObject)
+    public GameObject GetPoolObj()
     {
-        pool.Add(MeshObject);
+        foreach (GameObject instance in pool)
+        {
+            if (!instance.activeInHierarchy)
+            {
+                return instance;
+            }
+        }
+
+        GameObject newIns = Instantiate(mapPrefab);
+        pool.Add(newIns);
+        newIns.SetActive(false);
+        return newIns;
     }
 
-    public void CheckSize()
+    public void SpawnObject(Vector3 newPos)
     {
-        Debug.Log("Count 체크 : " + pool.Count());
+        GameObject instance = GetPoolObj();
+        instance.transform.position = newPos;
+        instance.SetActive(true);
     }
 }

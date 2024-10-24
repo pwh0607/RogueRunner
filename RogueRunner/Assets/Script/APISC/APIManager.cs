@@ -61,7 +61,7 @@ public class APIManager : MonoBehaviour
             var skills = JsonConvert.DeserializeObject<Dictionary<string, int>>(playerData.Skills);
 
             GameManager.Instance.initState();
-            GameManager.Instance.playerData.MapPlayerData(playerData.HP, playerData.Score, playerData.Speed, skills);
+            GameManager.Instance.playerData.SetPlayerData(playerData.HP, playerData.Score, playerData.Speed, skills);
             GameManager.Instance.gameState.MapGameState(playerData.Stage, playerData.SceneName);
         }
     }

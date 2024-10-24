@@ -5,10 +5,9 @@ using UnityEngine;
 
 public class ObstacleController2 : MonoBehaviour
 {
-    //따라갈 player 오브젝트.
+    private ObjectPoolingSC objectPool;
 
     int stage;
-
     protected GameObject player;
     protected float dynamicVal;
     protected Transform playerTrans;
@@ -20,6 +19,8 @@ public class ObstacleController2 : MonoBehaviour
 
     void Start()
     {
+        objectPool = transform.parent.GetComponent<ObjectPoolingSC>();
+
         stage = GameManager.Instance.gameState.stage;
         player = GameObject.FindWithTag("PLAYER");
         playerTrans = player.transform;
@@ -41,12 +42,12 @@ public class ObstacleController2 : MonoBehaviour
 
         if (gameObject.transform.position.z <= -450)
         {
-            Destroy(gameObject);
+            objectPool.ReturnObject(gameObject);
         }
 
         if (GameManager.Instance.getGameCode() == "StageClear")
         {
-            Destroy(gameObject);
+            objectPool.ReturnObject(gameObject);
         }
     }
 

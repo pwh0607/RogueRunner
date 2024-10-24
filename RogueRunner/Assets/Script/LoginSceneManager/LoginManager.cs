@@ -43,7 +43,6 @@ public class LoginManager : MonoBehaviour
 
     void Start()
     {
-        //초기에는 비활성화.
         signUpWindow.SetActive(false);
         loginBtn.onClick.AddListener(OnClickLoginBtn);
         WarnPan.SetActive(false);
@@ -93,7 +92,6 @@ public class LoginManager : MonoBehaviour
     }
     void OnClickSignUpBtn()
     {
-        //회원 가입 창이 띄워져 있지 않은 상태에서만 실행한다.
         if (!signUpWindow.activeSelf)
         {
             signUpWindow.SetActive(true);
@@ -101,8 +99,8 @@ public class LoginManager : MonoBehaviour
     }
     void OnClickLoginBtn()
     {
-        string id = "pid123";       //IDInput.GetComponent<TextMeshProUGUI>().text;           
-        string pw = "pw12345";      //PWInput.GetComponent<TextMeshProUGUI>().text;           
+        string id = IDInput.GetComponent<TextMeshProUGUI>().text;           
+        string pw = PWInput.GetComponent<TextMeshProUGUI>().text;           
         StartCoroutine(LoginUser(id, pw));
     }
 }

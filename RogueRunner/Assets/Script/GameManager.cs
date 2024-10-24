@@ -58,7 +58,7 @@ public class PlayerData
         skills.Add("BOMB", 3); skills.Add("SHILED", 3); skills.Add("TIMER", 3);
     }
 
-    public void MapPlayerData(int HP, float Score, float Speed, Dictionary<string, int> skills)
+    public void SetPlayerData(int HP, float Score, float Speed, Dictionary<string, int> skills)
     {
         this.curHP = HP;
         this.curScore = Score;
@@ -94,10 +94,10 @@ public class GameManager : MonoBehaviour
 
         setCharacterDic();
 
-        SceneList = new string[3];
+        SceneList = new string[2];
         SceneList[0] = "Forest";
         SceneList[1] = "Grave";
-        SceneList[2] = "Desert";          
+        //SceneList[2] = "Desert";          
 
         apiManager.GetTemp();
     }
@@ -120,11 +120,6 @@ public class GameManager : MonoBehaviour
     private string selectedCharacter;
    
     APIManager apiManager;
-
-    void Start()
-    {
-        Debug.Log("GameManager Start 메서드 실행됨.");
-    }
 
     void OnEnable()
     {
@@ -202,28 +197,6 @@ public class GameManager : MonoBehaviour
         playerData.UpdatePlayerData(p_state);
     }
 
-    public void setSkill(string card)
-    {
-        switch (card)
-        {
-            case "HP":
-                break;
-
-            case "BOMB":
-                break;
-
-            case "SHILED":
-                break;
-
-            case "TIMER":
-                break;
-
-            case "SPEEDUP":
-                playerData.curSpeed *= 1.2f;
-                break;
-        }
-    }
-
     public string getGameCode()
     {
         return gameState.GameCode;
@@ -294,11 +267,6 @@ public class GameManager : MonoBehaviour
     public void SavePlayerData()
     {
         apiManager.SendPlayerData(playerData, gameState);
-    }
-
-    private void OnApplicationQuit()
-    {
-
     }
 
     public void SendPlayerScore()

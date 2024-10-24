@@ -13,7 +13,7 @@ public class ClearPanelController : MonoBehaviour
         rectTransform = GetComponent<RectTransform>();
         dropTime = 0;
 
-        rectTransform.localPosition = new Vector3(0, 520, 0);
+        rectTransform.localPosition = new Vector3(0, 830, 0);
     }
 
     void Update()
