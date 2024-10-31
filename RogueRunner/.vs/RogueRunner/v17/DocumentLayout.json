@@ -1,0 +1,134 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Project\\Client\\RogueRunner\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|D:\\Project\\Client\\RogueRunner\\assets\\script\\apisc\\apimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\apisc\\apimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|d:\\project\\client\\roguerunner\\assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\gamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|D:\\Project\\Client\\RogueRunner\\assets\\script\\optimization\\mapmeshcombiner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\optimization\\mapmeshcombiner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|D:\\Project\\Client\\RogueRunner\\assets\\script\\stagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\stagemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|D:\\Project\\Client\\RogueRunner\\assets\\script\\optimization\\meshcombiner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\optimization\\meshcombiner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|D:\\Project\\Client\\RogueRunner\\assets\\script\\optioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\optioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|D:\\Project\\Client\\RogueRunner\\assets\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{07F1A864-0ED5-29C4-B59E-8F0902BBE272}|Assembly-CSharp.csproj|solutionrelative:assets\\script\\playercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 6,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "StageManager.cs",
+              "DocumentMoniker": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\StageManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\StageManager.cs",
+              "ToolTip": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\StageManager.cs",
+              "RelativeToolTip": "Assets\\Script\\StageManager.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAUwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T06:17:05.751Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "MapMeshCombiner.cs",
+              "DocumentMoniker": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\Optimization\\MapMeshCombiner.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Optimization\\MapMeshCombiner.cs",
+              "ToolTip": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\Optimization\\MapMeshCombiner.cs",
+              "RelativeToolTip": "Assets\\Script\\Optimization\\MapMeshCombiner.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAADwvwkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T05:58:21.396Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MeshCombiner.cs",
+              "DocumentMoniker": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\Optimization\\MeshCombiner.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\Optimization\\MeshCombiner.cs",
+              "ToolTip": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\Optimization\\MeshCombiner.cs",
+              "RelativeToolTip": "Assets\\Script\\Optimization\\MeshCombiner.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAewBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T05:51:11.87Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "OptionController.cs",
+              "DocumentMoniker": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\OptionController.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\OptionController.cs",
+              "ToolTip": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\OptionController.cs",
+              "RelativeToolTip": "Assets\\Script\\OptionController.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAADwvx0AAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T04:36:09.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PlayerController.cs",
+              "DocumentMoniker": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\PlayerController.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\PlayerController.cs",
+              "ToolTip": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\PlayerController.cs",
+              "RelativeToolTip": "Assets\\Script\\PlayerController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGUBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T04:28:49.073Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GameManager.cs",
+              "DocumentMoniker": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\GameManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\GameManager.cs",
+              "ToolTip": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\GameManager.cs",
+              "RelativeToolTip": "Assets\\Script\\GameManager.cs",
+              "ViewState": "AgIAACUAAAAAAAAAAABAwCUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T04:27:54.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "APIManager.cs",
+              "DocumentMoniker": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\APISC\\APIManager.cs",
+              "RelativeDocumentMoniker": "Assets\\Script\\APISC\\APIManager.cs",
+              "ToolTip": "D:\\Project\\Client\\RogueRunner\\Assets\\Script\\APISC\\APIManager.cs",
+              "RelativeToolTip": "Assets\\Script\\APISC\\APIManager.cs",
+              "ViewState": "AgIAAHkAAAAAAAAAAAAlwI4AAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-31T04:21:44.825Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

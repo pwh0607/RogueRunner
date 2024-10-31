@@ -62,7 +62,7 @@ public class APIManager : MonoBehaviour
 
             GameManager.Instance.initState();
             GameManager.Instance.playerData.SetPlayerData(playerData.HP, playerData.Score, playerData.Speed, skills);
-            GameManager.Instance.gameState.MapGameState(playerData.Stage, playerData.SceneName);
+            GameManager.Instance.gameState.SetGameState(playerData.Stage, playerData.SceneName);
         }
     }
 

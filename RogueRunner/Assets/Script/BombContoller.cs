@@ -6,7 +6,6 @@ using UnityEngine.UIElements;
 public class BombContoller : MonoBehaviour
 {
     float force = 2000f;
-    // Start is called before the first frame update
     void Start()
     {
         Vector3 dir = new Vector3(0, 0.3f, 1);
@@ -16,7 +15,6 @@ public class BombContoller : MonoBehaviour
         Destroy(gameObject, 3.0f);
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (GameManager.Instance.getGameCode() != "Paused" || !StageManager.Instance.isStopSkilled)

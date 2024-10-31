@@ -31,7 +31,7 @@ public class GameState
         this.GameCode = "Before";
         this.nowScene = "Forest";
     }
-    public void MapGameState(int Stage, string SceneName)
+    public void SetGameState(int Stage, string SceneName)
     {
         this.stage= Stage;
         this.nowScene= SceneName;
@@ -64,14 +64,6 @@ public class PlayerData
         this.curScore = Score;
         this.curSpeed = Speed;
         this.skills = skills;
-    }
-    
-    public void UpdatePlayerData(PlayerState p_state)
-    {
-        this.curHP = p_state.HP;
-        this.curSpeed = p_state.speed;
-        this.curScore = p_state.score;
-        this.skills = p_state.skills;
     }
 }
 
@@ -109,7 +101,6 @@ public class GameManager : MonoBehaviour
     public GameObject[] slowPrefab;
     public GameObject[] cardPrefab;
 
-    //캐릭터 종류 리스트
     public GameObject[] CharacterList;
     public Sprite[] CharIconList;
     public GameObject PlayerPrefab;
@@ -194,7 +185,7 @@ public class GameManager : MonoBehaviour
 
     public void UpdatePlayerData(PlayerState p_state)
     {
-        playerData.UpdatePlayerData(p_state);
+        playerData.SetPlayerData(p_state.HP, p_state.score, p_state.speed, p_state.skills);
     }
 
     public string getGameCode()

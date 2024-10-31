@@ -33,6 +33,5 @@ public class MapMeshCombiner : MonoBehaviour
             meshRenderer = gameObject.AddComponent<MeshRenderer>();
         }
         meshRenderer.material = meshFilters[0].GetComponent<MeshRenderer>().sharedMaterial;
-        Destroy(gameObject);
     }
 }

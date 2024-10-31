@@ -41,7 +41,7 @@ public class OptionController : MonoBehaviour
         Debug.Log("퇴장 버튼 클릭");
 
         PlayerState playerState = player.GetComponent<PlayerController>().getCurPlayerState();
-        GameManager.Instance.playerData.UpdatePlayerData(playerState);
+        GameManager.Instance.playerData.SetPlayerData(playerState.HP, playerState.score, playerState.speed, playerState.skills);
         GameManager.Instance.SavePlayerData();
         SceneManager.LoadScene("Lobby");
     }
