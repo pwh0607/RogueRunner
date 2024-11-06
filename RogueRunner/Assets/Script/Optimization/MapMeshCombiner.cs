@@ -2,36 +2,30 @@ using UnityEngine;
 
 public class MapMeshCombiner : MonoBehaviour
 {
-    void Start()
-    {
-        CombineMeshes();
-    }
-
     void CombineMeshes()
     {
         MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
         CombineInstance[] combine = new CombineInstance[meshFilters.Length];
 
+        transform.position = Vector3.zero;
         for (int i = 0; i < meshFilters.Length; i++)
         {
-            combine[i].mesh = meshFilters[i].sharedMesh;
+            combine[i].mesh = meshFilters[i].mesh;
             combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
-
-            if (meshFilters[i].gameObject != this.gameObject)
-            {
-                Destroy(meshFilters[i].gameObject);  
-            }
+            Destroy(meshFilters[i].gameObject);
         }
 
-        MeshFilter meshFilter = gameObject.AddComponent<MeshFilter>();
-        meshFilter.mesh = new Mesh();
-        meshFilter.mesh.CombineMeshes(combine);
+        MeshFilter combinedMeshFilter = gameObject.AddComponent<MeshFilter>();
+        MeshRenderer meshRenderer = gameObject.AddComponent<MeshRenderer>();
 
-        MeshRenderer meshRenderer = gameObject.GetComponent<MeshRenderer>();
-        if (meshRenderer == null)
-        {
-            meshRenderer = gameObject.AddComponent<MeshRenderer>();
-        }
-        meshRenderer.material = meshFilters[0].GetComponent<MeshRenderer>().sharedMaterial;
+        combinedMeshFilter.mesh = new Mesh();
+        combinedMeshFilter.mesh.CombineMeshes(combine);
+
+        meshRenderer.material = meshFilters[0].GetComponent<MeshRenderer>().material;
+    }
+
+    void Awake()
+    {
+        CombineMeshes();
     }
 }

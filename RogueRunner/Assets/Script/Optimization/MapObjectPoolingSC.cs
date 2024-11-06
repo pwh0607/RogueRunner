@@ -3,32 +3,31 @@ using UnityEngine;
 
 public class MapObjectPoolingSC : MonoBehaviour
 {
-    public GameObject mapPrefab;            //메쉬 결합이 된 오브젝트
-    public GameObject mapParent;
+    public GameObject roadPrefab;            //메쉬 결합이 된 오브젝트
+    public GameObject roadParent;
     public Transform spawnPos;
-    public int initSize = 4;
+    public int initSize = 5;
 
     private List<GameObject> pool;
-    private int MaxSize = 6;
+    private int MaxSize = 10;
 
     private void Start()
     {
+        pool = new List<GameObject>();
         InitPooling();
     }
 
     public void InitPooling()
     {
-
-        pool = new List<GameObject>();
         for (int i = 0; i < MaxSize; i++)
         {
-            GameObject instance = Instantiate(mapPrefab);
-            instance.transform.SetParent(mapParent.transform);
+            GameObject instance = Instantiate(roadPrefab);
+            instance.transform.SetParent(roadParent.transform);
             instance.SetActive(false);
             pool.Add(instance);
         }
 
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < initSize; i++)
         {
             Vector3 newPos = new Vector3(spawnPos.position.x, spawnPos.position.y, spawnPos.position.z - (i * 223));
             SpawnObject(newPos);
@@ -45,7 +44,7 @@ public class MapObjectPoolingSC : MonoBehaviour
             }
         }
 
-        GameObject newIns = Instantiate(mapPrefab);
+        GameObject newIns = Instantiate(roadPrefab);
         pool.Add(newIns);
         newIns.SetActive(false);
         return newIns;
@@ -55,6 +54,6 @@ public class MapObjectPoolingSC : MonoBehaviour
     {
         GameObject instance = GetPoolObj();
         instance.transform.position = newPos;
-        instance.SetActive(true);
+        instance.SetActive(true);   
     }
 }
