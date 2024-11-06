@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Playables;
-using System.Runtime.CompilerServices;
-using UnityEditor.SceneManagement;
 using System;
 
 public class PlayerState {

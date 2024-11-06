@@ -46,6 +46,6 @@ public class MapManager : MonoBehaviour
 
     public void SpawnRoad()
     {
-        MapObjectPoolingSC.SpawnObject(mapSpawnPos.position);
+        //MapObjectPoolingSC.SpawnObject(mapSpawnPos.position);
     }
 }
